@@ -3,12 +3,11 @@ import { Cliente } from './cliente';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  templateUrl: './form.component.html'
 })
 export class FormComponent implements OnInit {
-  private cliente: Cliente = new Cliente();
-  private titulo: String = "Crear cliente";
+  public cliente: Cliente = new Cliente();
+  public titulo: String = "Crear cliente";
 
   constructor() { }
 
