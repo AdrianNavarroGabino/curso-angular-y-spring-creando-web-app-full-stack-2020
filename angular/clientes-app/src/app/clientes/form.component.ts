@@ -11,6 +11,7 @@ import swal from 'sweetalert2';
 export class FormComponent implements OnInit {
   public cliente: Cliente = new Cliente();
   public titulo: String = "Crear cliente";
+  private errores: string[];
 
   constructor(private clienteService: ClienteService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -35,6 +36,11 @@ export class FormComponent implements OnInit {
            'Nuevo cliente',
            `Cliente ${cliente.nombre} creado con éxito`,
            'success');
+       },
+       err => {
+         this.errores = err.error.errors as string[];
+         console.error('Código de error desde el backend: ' + err.status);
+         console.error(err.error.errors);
        }
     );
   }
@@ -47,6 +53,11 @@ export class FormComponent implements OnInit {
           'Cliente actualizado',
           `Cliente ${json.cliente.nombre} actualizado con éxito`,
           'success');
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error('Código de error desde el backend: ' + err.status);
+        console.error(err.error.errors);
       }
     );
   }
