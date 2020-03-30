@@ -29,17 +29,25 @@ export class FormComponent implements OnInit {
 
   public create(): void {
     this.clienteService.create(this.cliente).subscribe(
-      cliente => {
+      cliente => { // En el service hemos mapeado el json para tener solo el cliente
          this.router.navigate(['/clientes'])
-         swal.fire('Nuevo cliente', `Cliente ${cliente.nombre} creado con éxito`, 'success');
+         swal.fire(
+           'Nuevo cliente',
+           `Cliente ${cliente.nombre} creado con éxito`,
+           'success');
        }
     );
   }
 
   update(): void {
-    this.clienteService.update(this.cliente).subscribe(cliente => {
-      this.router.navigate(['/clientes'])
-      swal.fire('Cliente actualizado', `Cliente ${cliente.nombre} actualizado con éxito`, 'success');
-    })
+    this.clienteService.update(this.cliente).subscribe(
+      json => { // La variable json es el Map creado en spring con el controller
+        this.router.navigate(['/clientes'])
+        swal.fire(
+          'Cliente actualizado',
+          `Cliente ${json.cliente.nombre} actualizado con éxito`,
+          'success');
+      }
+    );
   }
 }
