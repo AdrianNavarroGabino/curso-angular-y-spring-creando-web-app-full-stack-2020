@@ -17,38 +17,36 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="clientes")
+@Table(name = "clientes")
 public class Cliente implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotEmpty(message = "No puede estar vacío")
 	@Size(min = 4, max = 12, message = "El tamaño tiene que estar entre 4 y 12")
 	@Column(nullable = false)
 	private String nombre;
-	
+
 	@NotEmpty(message = "No puede estar vacío")
 	private String apellido;
-	
+
 	@NotEmpty(message = "No puede estar vacío")
 	@Email(message = "No es una dirección bien formada")
 	@Column(nullable = false, unique = true)
 	private String email;
-	
+
 	@NotNull(message = "No puede estar vacío")
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
-	
+
+	private String foto;
+
 	/*
-	@PrePersist
-	public void prePersist()
-	{
-		createAt = new Date();
-	}
-	*/
+	 * @PrePersist public void prePersist() { createAt = new Date(); }
+	 */
 
 	public Long getId() {
 		return id;
@@ -88,6 +86,14 @@ public class Cliente implements Serializable {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	/**
