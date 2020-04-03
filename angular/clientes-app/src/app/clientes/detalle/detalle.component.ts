@@ -50,6 +50,8 @@ export class DetalleComponent implements OnInit {
             let response: any = event.body;
             this.cliente = response.cliente as Cliente;
 
+            this.modalService.notificarUpload.emit(this.cliente);
+
             swal.fire(
               'La foto se ha subido correctamente',
               response.mensaje,
