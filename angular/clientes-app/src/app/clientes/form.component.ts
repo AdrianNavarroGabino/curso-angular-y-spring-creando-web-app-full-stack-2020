@@ -3,6 +3,7 @@ import { Cliente } from './cliente';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClienteService } from './cliente.service';
 import swal from 'sweetalert2';
+import { Region } from './region';
 
 @Component({
   selector: 'app-form',
@@ -12,11 +13,13 @@ export class FormComponent implements OnInit {
   public cliente: Cliente = new Cliente();
   public titulo: String = "Crear cliente";
   public errores: string[];
+  public regiones: Region[];
 
   constructor(private clienteService: ClienteService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarCliente();
+    this.clienteService.getRegiones().subscribe(regiones => this.regiones = regiones);
   }
 
   cargarCliente(): void {
