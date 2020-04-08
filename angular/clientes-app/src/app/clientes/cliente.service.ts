@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { formatDate, DatePipe } from '@angular/common';
 import { Cliente } from './cliente';
 import { of, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
@@ -31,9 +30,16 @@ export class ClienteService {
 
 
   private isNoAutorizado(e): boolean {
-    if(e.status = 401 || e.status == 403)
+    if(e.status = 401)
     {
       this.router.navigate(['/login']);
+      return true;
+    }
+
+    if(e.status == 403)
+    {
+      swal.fire('Acceso denegado', `Hola ${this.authService.usuario.username} no tienes acceso a este recurso`, 'warning');
+      this.router.navigate(['/clientes']);
       return true;
     }
 
