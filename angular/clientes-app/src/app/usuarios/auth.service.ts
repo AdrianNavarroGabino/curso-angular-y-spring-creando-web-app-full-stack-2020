@@ -85,4 +85,10 @@ export class AuthService {
 
     return payload != null && payload.user_name && payload.user_name.length > 0;
   }
+
+  logout(): void {
+    this._token = null;
+    this._usuario = null;
+    sessionStorage.clear();
+  }
 }
