@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
     if(this.usuario.username == null || this.usuario.password == null)
     {
-      swal.fire('Error Login', 'Username o password vacías', 'error');
+      swal.fire('Error Login', 'Username o password vacíos', 'error');
       return;
     }
 
@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
 
       this.router.navigate(['/clientes']);
       swal.fire('Login', 'Hola ' + usuario.username + ', has iniciado sesión con éxito', 'success');
+    }, err => {
+      if(err.status == 400) {
+        swal.fire('Error Login', 'Username o password incorrectos', 'error');
+      }
     });
   }
 
