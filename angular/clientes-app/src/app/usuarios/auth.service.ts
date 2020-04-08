@@ -79,4 +79,10 @@ export class AuthService {
 
     return null;
   }
+
+  isAuthenticated(): boolean {
+    let payload = this.obtenerDatosToken(this.token);
+
+    return payload != null && payload.user_name && payload.user_name.length > 0;
+  }
 }
