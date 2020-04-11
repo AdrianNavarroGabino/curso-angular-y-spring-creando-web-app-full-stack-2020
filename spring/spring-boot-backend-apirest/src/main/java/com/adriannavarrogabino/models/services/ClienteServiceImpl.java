@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.adriannavarrogabino.models.dao.IClienteDao;
 import com.adriannavarrogabino.models.dao.IFacturaDao;
+import com.adriannavarrogabino.models.dao.IProductoDao;
 import com.adriannavarrogabino.models.entity.Cliente;
 import com.adriannavarrogabino.models.entity.Factura;
+import com.adriannavarrogabino.models.entity.Producto;
 import com.adriannavarrogabino.models.entity.Region;
 
 @Service
@@ -22,6 +24,9 @@ public class ClienteServiceImpl implements IClienteService {
 	
 	@Autowired
 	private IFacturaDao facturaDao;
+	
+	@Autowired
+	private IProductoDao productoDao;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -75,6 +80,13 @@ public class ClienteServiceImpl implements IClienteService {
 	@Transactional
 	public void deleteFacturaById(Long id) {
 		facturaDao.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Producto> findProductoByNombre(String term) {
+		
+		return productoDao.findByNombre(term);
 	}
 
 }

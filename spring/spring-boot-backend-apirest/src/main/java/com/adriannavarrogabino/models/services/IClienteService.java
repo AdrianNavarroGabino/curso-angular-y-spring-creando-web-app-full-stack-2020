@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.adriannavarrogabino.models.entity.Cliente;
 import com.adriannavarrogabino.models.entity.Factura;
+import com.adriannavarrogabino.models.entity.Producto;
 import com.adriannavarrogabino.models.entity.Region;
 
 public interface IClienteService {
@@ -28,5 +29,7 @@ public interface IClienteService {
 	public Factura saveFactura(Factura factura);
 	
 	public void deleteFacturaById(Long id);
+	
+	public List<Producto> findProductoByNombre(String term);
 
 }
