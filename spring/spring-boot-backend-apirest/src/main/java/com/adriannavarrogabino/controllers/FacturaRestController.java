@@ -19,7 +19,7 @@ import com.adriannavarrogabino.models.entity.Producto;
 import com.adriannavarrogabino.models.services.IClienteService;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
 @RequestMapping("/api")
 public class FacturaRestController {

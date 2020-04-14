@@ -34,7 +34,7 @@ import com.adriannavarrogabino.models.entity.Region;
 import com.adriannavarrogabino.models.services.IClienteService;
 import com.adriannavarrogabino.models.services.IUploadFileService;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:4200", "*" })
 @RestController
 @RequestMapping("/api")
 public class ClienteRestController {
