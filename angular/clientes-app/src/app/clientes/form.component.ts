@@ -49,6 +49,8 @@ export class FormComponent implements OnInit {
   }
 
   update(): void {
+
+    this.cliente.facturas = null;
     this.clienteService.update(this.cliente).subscribe(
       json => { // La variable json es el Map creado en spring con el controller
         this.router.navigate(['/clientes'])
